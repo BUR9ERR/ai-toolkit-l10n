@@ -2,7 +2,7 @@
 
 > **中文汉化版 (Chinese Localization)**：本 fork 对 Web UI 做了**全量双语汉化**（`中文 (English)`，保留英文原文，专有名词与官方术语保留英文）。
 > 基于官方 **v0.13.4**（commit `9d6a9a0`），仅改动 `ui/src/` 下 51 个文件，不影响任何训练/推理功能。详细说明见 [CHINESE_LOCALIZATION.md](CHINESE_LOCALIZATION.md)。
-> 汉化补丁下载（Localization patch）：**[Release v0.13.4-l10n](https://github.com/haoranwnag/ai-toolkit-l10n/releases/tag/v0.13.4-l10n)**
+> 汉化补丁下载（Localization patch）：**[Release v0.13.4-l10n](https://github.com/BUR9ERR/ai-toolkit-l10n/releases/tag/v0.13.4-l10n)**
 
 
 AI Toolkit is an easy to use all in one training suite for diffusion models. I try to support all the latest models on consumer grade hardware. Image and video models. It can be run as a GUI or CLI. It is designed to be easy to use but still have every feature imaginable. Free and open source.

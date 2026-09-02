@@ -6,7 +6,7 @@
 - 基于版本：**v0.13.4**（commit `9d6a9a0`）
 - 上游同步：已合并官方后续提交 `ecb2bfb`（CPU offloading 修复，不影响汉化）
 - 汉化提交：`a634a8e`（51 个文件，全部位于 `ui/src/`）
-- GitHub Release：**[v0.13.4-l10n](https://github.com/haoranwnag/ai-toolkit-l10n/releases/tag/v0.13.4-l10n)**（含汉化补丁附件下载）
+- GitHub Release：**[v0.13.4-l10n](https://github.com/BUR9ERR/ai-toolkit-l10n/releases/tag/v0.13.4-l10n)**（含汉化补丁附件下载）
 
 ## 界面预览（汉化效果）
 
@@ -33,7 +33,7 @@
 clone 下来的就是「官方完整代码 + 汉化」，装好环境直接能用。
 
 ```bash
-git clone https://github.com/haoranwnag/ai-toolkit-l10n.git
+git clone https://github.com/BUR9ERR/ai-toolkit-l10n.git
 cd ai-toolkit-l10n
 python -m manager install     # 首次安装环境（之前装过可跳过）
 python -m manager launch      # 启动 Web UI，浏览器打开 http://localhost:8675
@@ -45,7 +45,7 @@ python -m manager launch      # 启动 Web UI，浏览器打开 http://localhost
 
 适合已经 clone 过官方 ai-toolkit、**版本是 v0.13.4** 的人。
 
-**第 1 步**：下载补丁文件 **[ai-toolkit-l10n-v0.13.4.patch](docs/ai-toolkit-l10n-v0.13.4.patch)**（已随本仓库提供；也可从 [Release v0.13.4-l10n](https://github.com/haoranwnag/ai-toolkit-l10n/releases/tag/v0.13.4-l10n) 的附件下载），放到官方项目根目录。
+**第 1 步**：下载补丁文件 **[ai-toolkit-l10n-v0.13.4.patch](docs/ai-toolkit-l10n-v0.13.4.patch)**（已随本仓库提供；也可从 [Release v0.13.4-l10n](https://github.com/BUR9ERR/ai-toolkit-l10n/releases/tag/v0.13.4-l10n) 的附件下载），放到官方项目根目录。
 
 **第 2 步**：在官方项目根目录应用：
 
@@ -63,7 +63,7 @@ git apply ai-toolkit-l10n-v0.13.4.patch
 
 不需要额外压缩包，直接从 GitHub 下载本仓库的**源码包**（里面自带全部汉化文件）：
 
-1. 打开本仓库页面，点绿色 **Code** 按钮 → **Download ZIP**（或到 [Release v0.13.4-l10n](https://github.com/haoranwnag/ai-toolkit-l10n/releases/tag/v0.13.4-l10n) 页面下载 **Source code (zip)**）
+1. 打开本仓库页面，点绿色 **Code** 按钮 → **Download ZIP**（或到 [Release v0.13.4-l10n](https://github.com/BUR9ERR/ai-toolkit-l10n/releases/tag/v0.13.4-l10n) 页面下载 **Source code (zip)**）
 2. 解压后，把里面的 `ui/` 文件夹**整体**复制
 3. 粘贴到你的官方 ai-toolkit 项目根目录，**同名文件直接替换**
 
