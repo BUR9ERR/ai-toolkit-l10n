@@ -4,6 +4,7 @@
 
 - 官方原版：https://github.com/ostris/ai-toolkit
 - 基于版本：**v0.13.4**（commit `9d6a9a0`）
+- 上游同步：已合并官方后续提交 `ecb2bfb`（CPU offloading 修复，不影响汉化）
 - 汉化提交：`a634a8e`（51 个文件，全部位于 `ui/src/`）
 - GitHub Release：**[v0.13.4-l10n](https://github.com/haoranwnag/ai-toolkit-l10n/releases/tag/v0.13.4-l10n)**（含汉化补丁附件下载）
 
