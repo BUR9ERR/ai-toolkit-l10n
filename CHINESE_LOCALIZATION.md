@@ -65,13 +65,15 @@ git apply 路径/ai-toolkit-l10n.patch
 
 ### 方式三：覆盖文件（给不会 git 的人）
 
-用分享包里的 `ai-toolkit-l10n-overlay-v0.13.4.zip`：
+不需要额外压缩包，直接从 GitHub 下载本仓库的**源码包**（里面自带全部汉化文件）：
 
-1. 解压 zip
-2. 把里面的 `ui/` 文件夹**整体**复制
-3. 粘贴到你的 ai-toolkit 项目根目录，**同名文件直接替换**
+1. 打开本仓库页面，点绿色 **Code** 按钮 → **Download ZIP**（或到 [Release v0.13.4-l10n](https://github.com/haoranwnag/ai-toolkit-l10n/releases/tag/v0.13.4-l10n) 页面下载 **Source code (zip)**）
+2. 解压后，把里面的 `ui/` 文件夹**整体**复制
+3. 粘贴到你的官方 ai-toolkit 项目根目录，**同名文件直接替换**
 
 不需要打任何命令，之后进入「重新构建」。
+
+> 原理：源码包就是「官方 v0.13.4 + 汉化」的完整代码，其中的 `ui/src/` 已是汉化后的 51 个文件，直接覆盖即完成汉化。
 
 ---
 
