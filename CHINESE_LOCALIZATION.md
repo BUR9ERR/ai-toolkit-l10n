@@ -6,6 +6,14 @@
 - 基于版本：**v0.13.4**（commit `9d6a9a0`）
 - 汉化提交：`a634a8e`（51 个文件，全部位于 `ui/src/`）
 
+## 界面预览（汉化效果）
+
+![仪表盘 Dashboard（GPU 监控）](docs/screenshots/dashboard.png)
+
+![新建训练任务 New Training Job（配置表单）](docs/screenshots/jobs_new.png)
+
+![任务队列 Queue](docs/screenshots/jobs.png)
+
 ## 怎么用？先花 10 秒选一条路
 
 | 你的情况 | 用哪种方式 |
