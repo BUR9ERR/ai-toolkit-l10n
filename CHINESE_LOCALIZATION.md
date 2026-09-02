@@ -22,7 +22,7 @@
 ### 方式一：直接使用本仓库（推荐）
 
 ```bash
-git clone https://github.com/haoranwnag/ai-toolkit.git
+git clone https://github.com/haoranwnag/ai-toolkit-l10n.git
 cd ai-toolkit
 python -m manager install      # 首次环境安装
 python -m manager launch       # 启动 Web UI，浏览器访问 http://localhost:8675
