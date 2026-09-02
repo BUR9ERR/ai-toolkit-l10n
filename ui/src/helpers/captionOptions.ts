@@ -185,13 +185,21 @@ export const captionerTypes: CaptionOption[] = [
     return a.label.localeCompare(b.label, undefined, { sensitivity: 'base' });
 }) as any;
 
+const captionGroupLabels: Record<CaptionGroup, string> = {
+    image: '图像 (Image)',
+    music: '音乐 (Music)',
+    video: '视频 (Video)',
+    'image/video/sound': '图像/视频/声音 (Image/Video/Sound)',
+};
+
 export const groupedCaptionerTypes: GroupedSelectOption[] = captionerTypes.reduce((acc, arch) => {
-    const group = acc.find(g => g.label === arch.group);
+    const label = captionGroupLabels[arch.group] || arch.group;
+    const group = acc.find(g => g.label === label);
     if (group) {
         group.options.push({ value: arch.name, label: arch.label });
     } else {
         acc.push({
-            label: arch.group,
+            label,
             options: [{ value: arch.name, label: arch.label }],
         });
     }
@@ -199,9 +207,9 @@ export const groupedCaptionerTypes: GroupedSelectOption[] = captionerTypes.reduc
 }, [] as GroupedSelectOption[]);
 
 export const quantizationOptions: SelectOption[] = [
-    { value: '', label: '- NONE -' },
+    { value: '', label: '- 无 (NONE) -' },
     { value: 'float8', label: 'float8' },
-    { value: 'convrot8', label: '8bit convrot (default)' },
+    { value: 'convrot8', label: '8bit convrot（默认）(8bit convrot default)' },
     { value: 'convrot4', label: '4bit convrot (nvfp4)' },
     { value: 'convrotint7', label: '7bit convrot' },
     { value: 'convrotint6', label: '6bit convrot' },
@@ -219,7 +227,7 @@ export const quantizationOptions: SelectOption[] = [
 ];
 
 export const batchSizeOptions: SelectOption[] = [
-    { value: '1', label: '1 (default)' },
+    { value: '1', label: '1（默认）(1 default)' },
     { value: '2', label: '2' },
     { value: '4', label: '4' },
     { value: '8', label: '8' },
@@ -231,13 +239,13 @@ export const batchSizeOptions: SelectOption[] = [
 
 export const maxResOptions: SelectOption[] = [
     { value: '256', label: '256' },
-    { value: '512', label: '512 (default)' },
+    { value: '512', label: '512（默认）(512 default)' },
     { value: '768', label: '768' },
     { value: '1024', label: '1024' },
 ];
 export const maxNewTokensOptions: SelectOption[] = [
     { value: '64', label: '64' },
-    { value: '128', label: '128 (default)' },
+    { value: '128', label: '128（默认）(128 default)' },
     { value: '256', label: '256' },
     { value: '512', label: '512' },
     { value: '1024', label: '1024' },

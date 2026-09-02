@@ -16,7 +16,7 @@ const MobileMenuButton: React.FC = () => {
     <button
       onClick={() => setIsMobileOpen(true)}
       className="md:hidden flex items-center ml-2 mr-1 px-1 py-1 rounded-md hover:bg-gray-800"
-      aria-label="Open menu"
+      aria-label="打开菜单 (Open menu)"
     >
       <ThemeLogo />
     </button>

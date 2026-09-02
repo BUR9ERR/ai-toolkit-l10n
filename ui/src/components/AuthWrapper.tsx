@@ -55,12 +55,12 @@ export default function AuthWrapper({ authRequired, children }: AuthWrapperProps
         setIsAuthorized(true);
       } else {
         setIsAuthorized(false);
-        setError('Invalid token. Please try again.');
+        setError('令牌无效，请重试。(Invalid token. Please try again.)');
       }
     } catch (err) {
       setIsAuthorized(false);
       console.log(err);
-      setError('Invalid token. Please try again.');
+      setError('令牌无效，请重试。(Invalid token. Please try again.)');
     }
     setIsLoading(false);
   };
@@ -70,7 +70,7 @@ export default function AuthWrapper({ authRequired, children }: AuthWrapperProps
     setError('');
 
     if (!token.trim()) {
-      setError('Please enter your token');
+      setError('请输入您的令牌 (Please enter your token)');
       return;
     }
 
@@ -112,7 +112,7 @@ export default function AuthWrapper({ authRequired, children }: AuthWrapperProps
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="token" className="block text-sm font-medium text-gray-400 mb-2">
-                Password
+                密码 (Password)
               </label>
               <input
                 id="token"
@@ -124,10 +124,10 @@ export default function AuthWrapper({ authRequired, children }: AuthWrapperProps
                 ref={inputRef}
                 onChange={e => setToken(e.target.value)}
                 className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 text-gray-100 transition duration-200"
-                placeholder="Enter your password"
+                placeholder="输入您的密码 (Enter your password)"
               />
               <div className='text-gray-500 text-xs mt-2'>
-                The password is set with the environment variable AI_TOOLKIT_AUTH, the default is the super secure secret word "password"
+                密码通过环境变量 AI_TOOLKIT_AUTH 设置，默认为超级安全的秘密单词 “password”。(The password is set with the environment variable AI_TOOLKIT_AUTH, the default is the super secure secret word "password")
               </div>
             </div>
 
@@ -155,7 +155,7 @@ export default function AuthWrapper({ authRequired, children }: AuthWrapperProps
                   ></path>
                 </svg>
               ) : (
-                'Check Password'
+                '验证密码 (Check Password)'
               )}
             </button>
           </form>

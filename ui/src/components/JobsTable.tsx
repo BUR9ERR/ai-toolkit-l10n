@@ -55,19 +55,19 @@ export default function JobsTable({ onlyActive = false, job_type = null }: JobsT
     const jobsToDelete = jobs.filter(job => selectedIds.has(job.id));
     if (jobsToDelete.length === 0) return;
     const runningCount = jobsToDelete.filter(job => job.status === 'running').length;
-    let message = `Are you sure you want to delete ${jobsToDelete.length} job${
+    let message = `确定要删除 ${jobsToDelete.length} 个任务吗？该操作会一并将其从磁盘上永久删除。(Are you sure you want to delete ${jobsToDelete.length} job${
       jobsToDelete.length === 1 ? '' : 's'
-    }? This will also permanently remove them from your disk.`;
+    }? This will also permanently remove them from your disk.)`;
     if (runningCount > 0) {
-      message += ` WARNING: ${runningCount} of them ${
+      message += ` 警告：其中 ${runningCount} 个正在运行，将先被停止。(WARNING: ${runningCount} of them ${
         runningCount === 1 ? 'is' : 'are'
-      } currently running and will be stopped first.`;
+      } currently running and will be stopped first.)`;
     }
     openConfirm({
-      title: 'Delete Jobs',
+      title: '删除任务 (Delete Jobs)',
       message: message,
       type: 'warning',
-      confirmText: 'Delete',
+      confirmText: '删除 (Delete)',
       onConfirm: async () => {
         setDeleteProgress({ done: 0, total: jobsToDelete.length });
         for (let i = 0; i < jobsToDelete.length; i++) {
@@ -122,7 +122,7 @@ export default function JobsTable({ onlyActive = false, job_type = null }: JobsT
       ),
     },
     {
-      title: 'Name',
+      title: '名称 (Name)',
       key: 'name',
       render: row => {
         let title = row.name;
@@ -134,7 +134,7 @@ export default function JobsTable({ onlyActive = false, job_type = null }: JobsT
           href = `/datasets/${datasetPath}`;
           title = (
             <>
-              <small className="opacity-50">CAPTION: </small> {datasetPath}
+              <small className="opacity-50">标注 (CAPTION): </small> {datasetPath}
             </>
           );
         }
@@ -149,7 +149,7 @@ export default function JobsTable({ onlyActive = false, job_type = null }: JobsT
       },
     },
     {
-      title: 'Steps',
+      title: '步数 (Steps)',
       key: 'steps',
       render: row => {
         const totalSteps = getTotalSteps(row);
@@ -177,7 +177,7 @@ export default function JobsTable({ onlyActive = false, job_type = null }: JobsT
       key: 'gpu_ids',
     },
     {
-      title: 'Status',
+      title: '状态 (Status)',
       key: 'status',
       render: row => {
         let statusClass = 'text-gray-400';
@@ -189,12 +189,12 @@ export default function JobsTable({ onlyActive = false, job_type = null }: JobsT
       },
     },
     {
-      title: 'Info',
+      title: '信息 (Info)',
       key: 'info',
       className: 'truncate max-w-xs',
     },
     {
-      title: 'Actions',
+      title: '操作 (Actions)',
       key: 'actions',
       className: 'text-right',
       render: row => {
@@ -251,26 +251,26 @@ export default function JobsTable({ onlyActive = false, job_type = null }: JobsT
             <>
               <CgSpinner className="inline animate-spin text-red-400" />
               <span className="text-sm text-gray-300">
-                Deleting {deleteProgress.done} / {deleteProgress.total}...
+                正在删除 {deleteProgress.done} / {deleteProgress.total}... (Deleting {deleteProgress.done} / {deleteProgress.total}...)
               </span>
             </>
           ) : (
             <>
               <span className="text-sm text-gray-300 flex-1">
-                {selectedIds.size} job{selectedIds.size === 1 ? '' : 's'} selected
+                已选择 {selectedIds.size} 个任务 ({selectedIds.size} job{selectedIds.size === 1 ? '' : 's'} selected)
               </span>
               <button
                 onClick={() => setSelectedIds(new Set())}
                 className="text-xs text-gray-300 bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded"
               >
-                Clear
+                清除 (Clear)
               </button>
               <button
                 onClick={onMassDelete}
                 className="text-xs text-white bg-red-600 hover:bg-red-700 px-2 py-1 rounded flex items-center gap-1"
               >
                 <Trash2 className="w-3.5 h-3.5" />
-                Delete Selected
+                删除所选 (Delete Selected)
               </button>
             </>
           )}
@@ -299,7 +299,7 @@ export default function JobsTable({ onlyActive = false, job_type = null }: JobsT
                 <div className="text-sm text-gray-300 italic flex items-center flex-shrink-0">
                   {queue?.is_running ? (
                     <>
-                      <span className="text-green-100 dark:text-green-400 mr-2">Queue Running</span>
+                      <span className="text-green-100 dark:text-green-400 mr-2">队列运行中 (Queue Running)</span>
                       <button
                         onClick={async () => {
                           await stopQueue(queue.gpu_ids as string);
@@ -307,12 +307,12 @@ export default function JobsTable({ onlyActive = false, job_type = null }: JobsT
                         }}
                         className="ml-2 sm:ml-4 text-xs text-white bg-red-600 hover:bg-red-700 px-2 py-1 rounded"
                       >
-                        STOP
+                        停止 (STOP)
                       </button>
                     </>
                   ) : (
                     <>
-                      <span className="text-red-100 dark:text-red-400 mr-2">Queue Stopped</span>
+                      <span className="text-red-100 dark:text-red-400 mr-2">队列已停止 (Queue Stopped)</span>
                       <button
                         onClick={async () => {
                           await startQueue(gpuKey);
@@ -320,7 +320,7 @@ export default function JobsTable({ onlyActive = false, job_type = null }: JobsT
                         }}
                         className="ml-2 sm:ml-4 text-xs text-white bg-green-600 hover:bg-green-700 px-2 py-1 rounded"
                       >
-                        START
+                        开始 (START)
                       </button>
                     </>
                   )}
@@ -344,7 +344,7 @@ export default function JobsTable({ onlyActive = false, job_type = null }: JobsT
         <div className="mb-6 opacity-50">
           <div className="text-md flex px-4 py-1 rounded-t-lg bg-slate-600">
             <div className="flex items-center space-x-2 flex-1 py-2">
-              <h2 className="font-semibold text-gray-100">Idle</h2>
+              <h2 className="font-semibold text-gray-100">空闲 (Idle)</h2>
             </div>
           </div>
           <UniversalTable columns={columns} rows={jobsDict['Idle'].jobs} isLoading={isLoading} onRefresh={refresh} />

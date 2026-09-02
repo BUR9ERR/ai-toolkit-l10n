@@ -58,7 +58,7 @@ export default function DatasetActionBar({ datasetName, className }: DatasetActi
               onClick={() => downloadZip('dataset')}
             >
               <Download className="w-4 h-4" />
-              Download Full Dataset
+              下载完整数据集 (Download Full Dataset)
             </div>
           </MenuItem>
           <MenuItem>
@@ -67,7 +67,7 @@ export default function DatasetActionBar({ datasetName, className }: DatasetActi
               onClick={() => downloadZip('dataset_captions')}
             >
               <Captions className="w-4 h-4" />
-              Download Captions
+              下载标注 (Download Captions)
             </div>
           </MenuItem>
         </MenuItems>

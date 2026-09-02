@@ -146,7 +146,7 @@ function MediumField({ value, onChange }: { value: string; onChange: (v: string)
   const showCustom = custom || (!known && (value || '').trim() !== '');
   return (
     <label className="flex flex-col gap-0.5">
-      <span className="text-[10px] text-gray-400">Medium</span>
+      <span className="text-[10px] text-gray-400">媒介 (Medium)</span>
       <select
         value={showCustom ? '__custom__' : canon}
         onChange={e => {
@@ -164,13 +164,13 @@ function MediumField({ value, onChange }: { value: string; onChange: (v: string)
             {m}
           </option>
         ))}
-        <option value="__custom__">Custom…</option>
+        <option value="__custom__">自定义… (Custom…)</option>
       </select>
       {showCustom && (
         <input
           type="text"
           value={value}
-          placeholder="custom medium"
+          placeholder="自定义媒介 (custom medium)"
           spellCheck={false}
           onChange={e => onChange(e.target.value)}
           className="mt-1 bg-gray-800 border border-gray-700 rounded px-2 py-1 text-xs text-gray-100 outline-none focus:border-blue-500"
@@ -192,7 +192,7 @@ function ColorPalette({ colors, max, onChange }: { colors: string[]; max: number
             value={toHex6(c)}
             onChange={e => setAt(i, toHex6(e.target.value))}
             className="w-5 h-5 rounded cursor-pointer bg-transparent border-0 p-0"
-            title="Pick color"
+            title="选择颜色 (Pick color)"
           />
           <input
             type="text"
@@ -205,7 +205,7 @@ function ColorPalette({ colors, max, onChange }: { colors: string[]; max: number
             type="button"
             onClick={() => removeAt(i)}
             className="text-gray-500 hover:text-rose-400"
-            title="Remove color"
+            title="移除颜色 (Remove color)"
           >
             <X className="w-3 h-3" />
           </button>
@@ -217,7 +217,7 @@ function ColorPalette({ colors, max, onChange }: { colors: string[]; max: number
           onClick={() => onChange([...colors, '#888888'])}
           className="flex items-center gap-1 text-[10px] text-gray-400 hover:text-gray-200 border border-dashed border-gray-700 rounded px-1.5 py-1"
         >
-          <Plus className="w-3 h-3" /> Add
+          <Plus className="w-3 h-3" /> 添加 (Add)
         </button>
       )}
     </div>
@@ -271,7 +271,7 @@ export default function IdeogramCaptionSidebar({
   if (!data) {
     return (
       <div className="rounded border border-rose-700 bg-rose-950/30 p-2 text-xs text-rose-300">
-        Caption is not valid JSON, so the form editor is unavailable. Fix it in the raw text below.
+        标注不是有效的 JSON，因此表单编辑器不可用。请在下方原始文本中修复。(Caption is not valid JSON, so the form editor is unavailable. Fix it in the raw text below.)
         <textarea
           value={caption}
           onChange={e => onChange(e.target.value)}
@@ -363,11 +363,11 @@ export default function IdeogramCaptionSidebar({
     <div className="flex flex-col gap-4 text-sm">
       {/* Header — stays pinned while the form scrolls */}
       <div className="sticky -top-3 z-20 -mx-3 -mt-3 px-3 pt-3 pb-2 bg-gray-950/95 backdrop-blur border-b border-gray-800 flex items-center gap-2">
-        <span className="text-xs font-semibold text-gray-200">Ideogram Caption</span>
+        <span className="text-xs font-semibold text-gray-200">Ideogram 标注 (Ideogram Caption)</span>
         {isDirty && (
           <span
             className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_6px] shadow-blue-500/60"
-            title="Unsaved changes"
+            title="有未保存的更改 (Unsaved changes)"
           />
         )}
         <button
@@ -379,30 +379,30 @@ export default function IdeogramCaptionSidebar({
             'border-gray-700 text-gray-500 cursor-default': !isDirty,
           })}
         >
-          {isDirty ? 'Save' : 'Saved'}
+          {isDirty ? '保存 (Save)' : '已保存 (Saved)'}
         </button>
       </div>
 
       <TextAreaField
-        label="High-level description"
+        label="高层描述 (High-level description)"
         value={data.high_level_description ?? ''}
         onChange={v => update(d => (d.high_level_description = v))}
         rows={3}
-        placeholder="One-sentence summary of the image..."
+        placeholder="一句话概括图片… (One-sentence summary of the image...)"
       />
 
-      <Section title="Style">
-        <TextField label="Aesthetics" value={style.aesthetics ?? ''} onChange={v => setStyle('aesthetics', v)} />
-        <TextField label="Lighting" value={style.lighting ?? ''} onChange={v => setStyle('lighting', v)} />
+      <Section title="风格 (Style)">
+        <TextField label="美学 (Aesthetics)" value={style.aesthetics ?? ''} onChange={v => setStyle('aesthetics', v)} />
+        <TextField label="光线 (Lighting)" value={style.lighting ?? ''} onChange={v => setStyle('lighting', v)} />
         <MediumField value={style.medium ?? ''} onChange={setMedium} />
         <TextField
-          label={photoBranch ? 'Photo (camera / film)' : 'Art style (rendering technique)'}
+          label={photoBranch ? '照片（相机/胶片）(Photo camera / film)' : '艺术风格（渲染技法）(Art style rendering technique)'}
           value={renderValue}
           onChange={setRender}
           placeholder={photoBranch ? '35mm film still, shallow depth of field' : 'flat vector, clean edges'}
         />
         <div className="flex flex-col gap-1">
-          <span className="text-[10px] text-gray-400">Color palette (max 16)</span>
+          <span className="text-[10px] text-gray-400">调色板（最多 16 个）(Color palette max 16)</span>
           <ColorPalette
             colors={Array.isArray(style.color_palette) ? style.color_palette : []}
             max={16}
@@ -411,7 +411,7 @@ export default function IdeogramCaptionSidebar({
         </div>
       </Section>
 
-      <Section title="Background">
+      <Section title="背景 (Background)">
         <TextAreaField
           label=""
           value={decon.background ?? ''}
@@ -421,29 +421,29 @@ export default function IdeogramCaptionSidebar({
             })
           }
           rows={4}
-          placeholder="The scene shell: walls, floor, sky, ambient light..."
+          placeholder="场景外壳：墙壁、地板、天空、环境光… (The scene shell: walls, floor, sky, ambient light...)"
         />
       </Section>
 
-      <Section title={`Elements (${elements.length})`}>
+      <Section title={`元素 (${elements.length}) (Elements)`}>
         <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={addElement}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-gray-600 text-gray-300 hover:bg-gray-800 text-xs transition-colors"
           >
-            <Plus className="w-3.5 h-3.5" /> Add element
+            <Plus className="w-3.5 h-3.5" /> 添加元素 (Add element)
           </button>
           <button
             type="button"
             onClick={onToggleDrawing}
-            title="Draw a new box on the image"
+            title="在图片上绘制新边界框 (Draw a new box on the image)"
             className={classNames('flex items-center gap-1.5 px-3 py-1.5 rounded-md border text-xs transition-colors', {
               'bg-blue-600 border-blue-500 text-white': isDrawing,
               'border-gray-600 text-gray-300 hover:bg-gray-800': !isDrawing,
             })}
           >
-            <SquareDashed className="w-3.5 h-3.5" /> {isDrawing ? 'Drawing… (esc to cancel)' : 'Draw box'}
+            <SquareDashed className="w-3.5 h-3.5" /> {isDrawing ? '绘制中…（按 Esc 取消）(Drawing… esc to cancel)' : '绘制边界框 (Draw box)'}
           </button>
         </div>
 
@@ -474,7 +474,7 @@ export default function IdeogramCaptionSidebar({
                       'bg-gray-800 text-gray-400 hover:text-gray-200': !selected,
                     },
                   )}
-                  title="Select (highlights its box on the image)"
+                  title="选择（在图片上高亮其边界框）(Select highlights its box on the image)"
                 >
                   <span
                     className="w-2.5 h-2.5 rounded-sm border border-black/30"
@@ -518,7 +518,7 @@ export default function IdeogramCaptionSidebar({
                   type="button"
                   onClick={() => removeElement(i)}
                   className="ml-auto text-gray-500 hover:text-rose-400 transition-colors"
-                  title="Delete element"
+                  title="删除元素 (Delete element)"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -526,7 +526,7 @@ export default function IdeogramCaptionSidebar({
 
               {isText && (
                 <TextAreaField
-                  label="Text (rendered in image)"
+                  label="文本（在图片中渲染）(Text rendered in image)"
                   value={el.text ?? ''}
                   onChange={v => setElement(i, e => (e.text = v))}
                   rows={2}
@@ -534,7 +534,7 @@ export default function IdeogramCaptionSidebar({
               )}
 
               <TextAreaField
-                label="Description"
+                label="描述 (Description)"
                 value={el.desc ?? ''}
                 onChange={v => setElement(i, e => (e.desc = v))}
                 rows={3}
@@ -542,14 +542,14 @@ export default function IdeogramCaptionSidebar({
 
               <div className="flex flex-col gap-1">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] text-gray-400">Bounding box {bbox ? '' : '(none)'}</span>
+                  <span className="text-[10px] text-gray-400">边界框 (Bounding box) {bbox ? '' : '(无) (none)'}</span>
                   {bbox ? (
                     <button
                       type="button"
                       onClick={() => setElement(i, e => delete e.bbox)}
                       className="text-[10px] text-rose-400 hover:text-rose-300"
                     >
-                      remove
+                      移除 (remove)
                     </button>
                   ) : (
                     <button
@@ -557,7 +557,7 @@ export default function IdeogramCaptionSidebar({
                       onClick={() => setElement(i, e => (e.bbox = [250, 250, 750, 750]))}
                       className="text-[10px] text-blue-400 hover:text-blue-300"
                     >
-                      + add box
+                      + 添加边界框 (add box)
                     </button>
                   )}
                 </div>
@@ -587,7 +587,7 @@ export default function IdeogramCaptionSidebar({
               </div>
 
               <div className="flex flex-col gap-1">
-                <span className="text-[10px] text-gray-400">Colors (max 5)</span>
+                <span className="text-[10px] text-gray-400">颜色（最多 5 个）(Colors max 5)</span>
                 <ColorPalette
                   colors={palette}
                   max={5}
@@ -611,7 +611,7 @@ export default function IdeogramCaptionSidebar({
           onClick={() => setShowRaw(s => !s)}
           className="text-[11px] text-gray-500 hover:text-gray-300"
         >
-          {showRaw ? '▾ Hide raw JSON' : '▸ Raw JSON'}
+          {showRaw ? '▾ 隐藏原始 JSON (Hide raw JSON)' : '▸ 原始 JSON (Raw JSON)'}
         </button>
         {showRaw && (
           <textarea

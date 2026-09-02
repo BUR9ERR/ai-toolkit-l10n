@@ -781,12 +781,12 @@ export const modelArchs: ModelArch[] = [
     ],
     customModelSelectOptions: [
       {
-        label: 'Distillation Handling Method',
+        label: '蒸馏处理方式 (Distillation Handling Method)',
         options: [
-          { value: 'cg', label: 'Contrastive Guidance' },
-          { value: 'ta', label: 'Training Adapter' },
-          { value: 'both', label: 'Contrastive Guidance + Training Adapter (default)' },
-          { value: 'none', label: 'None' },
+          { value: 'cg', label: '对比引导 (Contrastive Guidance)' },
+          { value: 'ta', label: '训练适配器 (Training Adapter)' },
+          { value: 'both', label: '对比引导 + 训练适配器（默认）(Contrastive Guidance + Training Adapter default)' },
+          { value: 'none', label: '无 (None)' },
         ],
         getValue: (config: JobConfig) => {
           const assistantLoraPath = config?.config?.process?.[0]?.model?.assistant_lora_path;
@@ -833,10 +833,11 @@ export const modelArchs: ModelArch[] = [
           }
         },
         doc: {
-          title: 'MiniMax-H3 Distillation Handling',
+          title: 'MiniMax-H3 蒸馏处理 (Distillation Handling)',
           description: (
             <div>
-              MiniMax H3 is a guidance distilled model, so training on it directly will make the guidance distillation
+              MiniMax H3 是一个通过引导蒸馏（guidance distillation）得到的模型，直接训练会导致引导蒸馏失效。有两种方式可在不破坏引导蒸馏的情况下训练该模型：对比引导 (Contrastive Guidance) 与训练适配器 (Training Adapter)。两者各有利弊：适配器更快，但长时间运行仍可能失效；对比引导较慢，但更不易失效。
+              (English) MiniMax H3 is a guidance distilled model, so training on it directly will make the guidance distillation
               break down. There are two different ways to train on this model without breaking the guidance
               distillation: Contrastive Guidance and Training Adapter. Both have their pros and cons. The adapter is
               faster, but will still break down over a long run. Contrastive Guidance is slower, but is less likely to
@@ -851,10 +852,9 @@ export const modelArchs: ModelArch[] = [
         <p>
           Weights load from the{' '}
           <Link href="/settings" className="text-blue-400 hover:underline">
-            Models Folder Path
+            模型文件夹路径 (Models Folder Path)
           </Link>{' '}
-          set in settings. Anything missing is downloaded there from <code>Comfy-Org/MiniMax-H3</code> on first load
-          (~43GB total). Files used:
+          在设置中配置。缺失的内容会在首次加载时从 <code>Comfy-Org/MiniMax-H3</code> 下载到该路径（总计约 43GB）。使用的文件：
         </p>
         <pre className="bg-gray-900 border border-gray-700 rounded-lg p-3 text-xs overflow-x-auto">
           <code>{`<MODELS_PATH>/
@@ -937,13 +937,13 @@ export const modelArchs: ModelArch[] = [
     ],
     customModelSelectOptions: [
       {
-        label: 'Distillation Handling Method',
+        label: '蒸馏处理方式 (Distillation Handling Method)',
         options: [
-          { value: 'cg', label: 'Contrastive Guidance' },
-          { value: 'ta', label: 'Training Adapter' },
-          { value: 'both', label: 'Contrastive Guidance + Training Adapter (default)' },
+          { value: 'cg', label: '对比引导 (Contrastive Guidance)' },
+          { value: 'ta', label: '训练适配器 (Training Adapter)' },
+          { value: 'both', label: '对比引导 + 训练适配器（默认）(Contrastive Guidance + Training Adapter default)' },
           { value: 'dopsd', label: 'D-OPSD' },
-          { value: 'none', label: 'None' },
+          { value: 'none', label: '无 (None)' },
         ],
         getValue: (config: JobConfig) => {
           if (config?.config?.process?.[0]?.model?.model_kwargs?.dopsd) {
@@ -1002,26 +1002,25 @@ export const modelArchs: ModelArch[] = [
           }
         },
         doc: {
-          title: 'MiniMax-H3 Distillation Handling',
+          title: 'MiniMax-H3 蒸馏处理 (Distillation Handling)',
           description: (
             <div>
-              MiniMax H3 is a guidance distilled model, so training on it directly will make the guidance distillation
+              MiniMax H3 是一个通过引导蒸馏（guidance distillation）得到的模型，直接训练会导致引导蒸馏失效。有两种方式可在不破坏引导蒸馏的情况下训练该模型：对比引导 (Contrastive Guidance) 与训练适配器 (Training Adapter)。两者各有利弊：适配器更快，但长时间运行仍可能失效；对比引导较慢，但更不易失效。
+              (English) MiniMax H3 is a guidance distilled model, so training on it directly will make the guidance distillation
               break down. There are two different ways to train on this model without breaking the guidance
               distillation: Contrastive Guidance and Training Adapter. Both have their pros and cons. The adapter is
               faster, but will still break down over a long run. Contrastive Guidance is slower, but is less likely to
-              break down. D-OPSD instead self-distills: a no-grad teacher pass sees the training target as its own
-              reference and its prediction becomes the training target for a reference-free pass, baking the reference
-              into your trigger word (or the caption itself when no trigger word is set). Re-caches latents with pixel
-              tensors.
+              D-OPSD 则改为自蒸馏：无梯度教师前向将训练目标视为自身参考，其预测成为无参考前向的训练目标，从而把参考烘焙进你的触发词（未设置触发词时烘焙进标注本身）。会使用像素张量重新缓存潜变量 (latents)。
+              (English) D-OPSD instead self-distills: a no-grad teacher pass sees the training target as its own reference and its prediction becomes the training target for a reference-free pass, baking the reference into your trigger word (or the caption itself when no trigger word is set). Re-caches latents with pixel tensors.
             </div>
           ),
         },
       },
       {
-        label: 'Image Reference Presentation',
+        label: '图像参考呈现 (Image Reference Presentation)',
         options: [
-          { value: 'picture', label: 'Picture (default)' },
-          { value: 'video', label: 'Static video clip' },
+          { value: 'picture', label: '图片（默认）(Picture default)' },
+          { value: 'video', label: '静态视频片段 (Static video clip)' },
         ],
         getValue: (config: JobConfig) => {
           return config?.config?.process?.[0]?.model?.model_kwargs?.image_refs_as_video ? 'video' : 'picture';
@@ -1037,23 +1036,18 @@ export const modelArchs: ModelArch[] = [
           setJobConfig(kwargs, 'config.process[0].model.model_kwargs');
         },
         doc: {
-          title: 'MiniMax-H3 Image Reference Presentation',
+          title: 'MiniMax-H3 图像参考呈现 (Image Reference Presentation)',
           description: (
             <div className="space-y-2">
               <p>
-                How still-image references (dataset control images and sample ctrl images) are shown to the model. Video
+                控制静态图像参考（数据集控制图片与采样 ctrl 图片）如何呈现给模型。视频参考始终走视频路径。(How still-image references (dataset control images and sample ctrl images) are shown to the model. Video
                 references always use the video path.
               </p>
               <p>
-                <strong>Picture</strong>: the native ref2va recipe — a single-frame reference block, shown to Qwen3-VL
-                as a <code>&lt;Picture i&gt;</code> block, scaled down only.
+                <strong>图片 (Picture)</strong>：原生 ref2va 方案——单帧参考块，以 <code>&lt;Picture i&gt;</code> 块呈现给 Qwen3-VL，仅做缩放。(the native ref2va recipe — a single-frame reference block, shown to Qwen3-VL as a <code>&lt;Picture i&gt;</code> block, scaled down only.)
               </p>
               <p>
-                <strong>Static video clip</strong>: the image is held for 5 frames (2 latent frames) and routed through
-                the exact path a reference VIDEO takes — video sizing (matched to the target's pixel area), multi-frame
-                reference block, <code>&lt;Video k&gt;</code> timestamped presentation. Use this when training on image
-                references but sampling with video references, so the LoRA learns the pathway it will be used through.
-                Adds a handful of rows per reference. Frame count is adjustable with{' '}
+                <strong>静态视频片段 (Static video clip)</strong>：将图片保持 5 帧（2 个潜变量帧）并通过参考视频的精确路径路由——视频尺寸（匹配目标的像素面积）、多帧参考块、带时间戳的 <code>&lt;Video k&gt;</code> 呈现。当使用图像参考训练、但用视频参考采样时，使用此选项，让 LoRA 学习它将要经过的路径。每个参考会增加少量行数。帧数可通过以下参数调整{' '}
                 <code>model_kwargs.image_ref_video_frames</code> (17n+5). Changing this re-caches text embeddings.
               </p>
             </div>
@@ -1075,9 +1069,9 @@ export const modelArchs: ModelArch[] = [
         <p>
           Weights load like MiniMax-H3 (see that arch's notes) from the{' '}
           <Link href="/settings" className="text-blue-400 hover:underline">
-            Models Folder Path
+            模型文件夹路径 (Models Folder Path)
           </Link>
-          , using <code>diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors</code> — the ref2va partition
+          配置，使用 <code>diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors</code> — the ref2va partition
           of the same release; text encoder and VAEs are shared with the fl2va arch. Everything else (pre-quantized
           load, 24 fps, 17n+5 frame grid, guidance scale 1, single-image mode) matches MiniMax-H3.
         </p>
@@ -1308,12 +1302,12 @@ export const modelArchs: ModelArch[] = [
     },
     sampleTags: {
       CAPTION: {
-        title: 'Audio Prompt',
+        title: '音频提示词 (Audio Prompt)',
         type: 'text',
         full: true,
       },
       LYRICS: {
-        title: 'Lyrics',
+        title: '歌词 (Lyrics)',
         type: 'multiline',
         full: true,
       },
@@ -1322,19 +1316,19 @@ export const modelArchs: ModelArch[] = [
         type: 'number',
       },
       KEYSCALE: {
-        title: 'Key Scale',
+        title: '调式 (Key Scale)',
         type: 'text',
       },
       TIMESIGNATURE: {
-        title: 'Time Signature',
+        title: '拍号 (Time Signature)',
         type: 'text',
       },
       DURATION: {
-        title: 'Duration (sec)',
+        title: '时长（秒）(Duration sec)',
         type: 'number',
       },
       LANGUAGE: {
-        title: 'Language',
+        title: '语言 (Language)',
         type: 'text',
       },
     },
@@ -1362,12 +1356,12 @@ export const modelArchs: ModelArch[] = [
     },
     sampleTags: {
       CAPTION: {
-        title: 'Audio Prompt',
+        title: '音频提示词 (Audio Prompt)',
         type: 'text',
         full: true,
       },
       LYRICS: {
-        title: 'Lyrics',
+        title: '歌词 (Lyrics)',
         type: 'multiline',
         full: true,
       },
@@ -1376,19 +1370,19 @@ export const modelArchs: ModelArch[] = [
         type: 'number',
       },
       KEYSCALE: {
-        title: 'Key Scale',
+        title: '调式 (Key Scale)',
         type: 'text',
       },
       TIMESIGNATURE: {
-        title: 'Time Signature',
+        title: '拍号 (Time Signature)',
         type: 'text',
       },
       DURATION: {
-        title: 'Duration (sec)',
+        title: '时长（秒）(Duration sec)',
         type: 'number',
       },
       LANGUAGE: {
-        title: 'Language',
+        title: '语言 (Language)',
         type: 'text',
       },
     },
@@ -1704,13 +1698,22 @@ export const modelArchs: ModelArch[] = [
   return a.label.localeCompare(b.label, undefined, { sensitivity: 'base' });
 }) as any;
 
+const groupLabels: Record<string, string> = {
+  image: '图像 (Image)',
+  instruction: '指令 (Instruction)',
+  video: '视频 (Video)',
+  experimental: '实验性 (Experimental)',
+  audio: '音频 (Audio)',
+};
+
 export const groupedModelOptions: GroupedSelectOption[] = modelArchs.reduce((acc, arch) => {
-  const group = acc.find(g => g.label === arch.group);
+  const label = groupLabels[arch.group] || arch.group;
+  const group = acc.find(g => g.label === label);
   if (group) {
     group.options.push({ value: arch.name, label: arch.label });
   } else {
     acc.push({
-      label: arch.group,
+      label,
       options: [{ value: arch.name, label: arch.label }],
     });
   }
@@ -1751,12 +1754,12 @@ interface JobTypeOption extends SelectOption {
 export const jobTypeOptions: JobTypeOption[] = [
   {
     value: 'diffusion_trainer',
-    label: 'LoRA Trainer',
+    label: 'LoRA 训练器 (LoRA Trainer)',
     disableSections: ['slider'],
   },
   {
     value: 'concept_slider',
-    label: 'Concept Slider',
+    label: '概念滑块 (Concept Slider)',
     disableSections: ['trigger_word', 'train.diff_output_preservation'],
     onActivate: (config: JobConfig) => {
       // add default slider config

@@ -548,10 +548,10 @@ export default function JobLossGraph({ job }: Props) {
     const count = xs.filter(x => x >= minStep && x <= maxStep).length;
 
     openConfirm({
-      title: 'Delete Selected Range',
-      message: `Permanently delete steps ${minStep.toLocaleString()}–${maxStep.toLocaleString()} (${count.toLocaleString()} plotted points) from the loss log for all metrics? This cannot be undone.`,
+      title: '删除所选范围 (Delete Selected Range)',
+      message: `永久删除损失日志中所有指标在步骤 ${minStep.toLocaleString()}–${maxStep.toLocaleString()}（共 ${count.toLocaleString()} 个绘制点）的数据？此操作无法撤销。(Permanently delete steps ${minStep.toLocaleString()}–${maxStep.toLocaleString()} (${count.toLocaleString()} plotted points) from the loss log for all metrics? This cannot be undone.)`,
       type: 'danger',
-      confirmText: 'Delete',
+      confirmText: '删除 (Delete)',
       onConfirm: async () => {
         setDeleting(true);
         try {
@@ -578,13 +578,13 @@ export default function JobLossGraph({ job }: Props) {
       <div className="bg-gray-800 px-4 py-3 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2">
           <div className="h-2 w-2 rounded-full bg-blue-400" />
-          <h2 className="text-gray-100 text-sm font-medium">Loss graph</h2>
+          <h2 className="text-gray-100 text-sm font-medium">损失曲线 (Loss graph)</h2>
           <span className="text-xs text-gray-400">
-            {status === 'loading' && 'Loading...'}
-            {status === 'refreshing' && 'Refreshing...'}
-            {status === 'error' && 'Error'}
-            {status === 'success' && hasData && `${totalPoints.toLocaleString()} steps`}
-            {status === 'success' && !hasData && 'No data yet'}
+            {status === 'loading' && '加载中… (Loading...)'}
+            {status === 'refreshing' && '刷新中… (Refreshing...)'}
+            {status === 'error' && '出错 (Error)'}
+            {status === 'success' && hasData && `${totalPoints.toLocaleString()} 步 (steps)`}
+            {status === 'success' && !hasData && '暂无数据 (No data yet)'}
           </span>
         </div>
 
@@ -593,7 +593,7 @@ export default function JobLossGraph({ job }: Props) {
           onClick={refreshLoss}
           className="px-3 py-1 rounded-md text-xs bg-gray-700/60 hover:bg-gray-700 text-gray-200 border border-gray-700"
         >
-          Refresh
+          刷新 (Refresh)
         </button>
       </div>
 
@@ -605,7 +605,7 @@ export default function JobLossGraph({ job }: Props) {
         >
           {!hasData ? (
             <div className="absolute inset-0 flex items-center justify-center text-sm text-gray-400">
-              {status === 'error' ? 'Failed to load loss logs.' : 'Waiting for loss points...'}
+              {status === 'error' ? '损失日志加载失败。(Failed to load loss logs.)' : '正在等待损失数据点… (Waiting for loss points...)'}
             </div>
           ) : (
             <>
@@ -617,14 +617,14 @@ export default function JobLossGraph({ job }: Props) {
                     disabled={deleting}
                     className="px-2 py-1 rounded text-xs bg-red-600/80 hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed text-white border border-red-500/50"
                   >
-                    {deleting ? 'Deleting...' : 'Delete Selected Range'}
+                    {deleting ? '删除中… (Deleting...)' : '删除所选范围 (Delete Selected Range)'}
                   </button>
                   <button
                     type="button"
                     onClick={handleResetZoom}
                     className="px-2 py-1 rounded text-xs bg-blue-600/80 hover:bg-blue-600 text-white border border-blue-500/50"
                   >
-                    Reset zoom
+                    重置缩放 (Reset zoom)
                   </button>
                 </div>
               )}
@@ -640,18 +640,18 @@ export default function JobLossGraph({ job }: Props) {
       <div className="px-4 pb-2 shrink-0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div className="bg-gray-950 border border-gray-800 rounded-lg p-3">
-            <label className="block text-xs text-gray-400 mb-2">Display</label>
+            <label className="block text-xs text-gray-400 mb-2">显示 (Display)</label>
             <div className="flex flex-wrap gap-2">
-              <ToggleButton checked={showTrend} onClick={() => setShowTrend(v => !v)} label="Trend" />
-              <ToggleButton checked={useLogScale} onClick={() => setUseLogScale(v => !v)} label="Log Y" />
-              <ToggleButton checked={clipOutliers} onClick={() => setClipOutliers(v => !v)} label="Clip outliers" />
+              <ToggleButton checked={showTrend} onClick={() => setShowTrend(v => !v)} label="趋势 (Trend)" />
+              <ToggleButton checked={useLogScale} onClick={() => setUseLogScale(v => !v)} label="对数 Y (Log Y)" />
+              <ToggleButton checked={clipOutliers} onClick={() => setClipOutliers(v => !v)} label="裁剪离群值 (Clip outliers)" />
             </div>
           </div>
 
           <div className="bg-gray-950 border border-gray-800 rounded-lg p-3">
-            <label className="block text-xs text-gray-400 mb-2">Series</label>
+            <label className="block text-xs text-gray-400 mb-2">序列 (Series)</label>
             {lossKeys.length === 0 ? (
-              <div className="text-sm text-gray-400">No loss keys found yet.</div>
+              <div className="text-sm text-gray-400">尚未找到损失键。(No loss keys found yet.)</div>
             ) : (
               <div className="flex flex-wrap gap-2">
                 {lossKeys.map(k => (
@@ -678,7 +678,7 @@ export default function JobLossGraph({ job }: Props) {
 
           <div className="bg-gray-950 border border-gray-800 rounded-lg p-3">
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-xs text-gray-400">Smoothing</label>
+              <label className="block text-xs text-gray-400">平滑 (Smoothing)</label>
               <span className="text-xs text-gray-300">{smoothing}%</span>
             </div>
             <input
@@ -693,8 +693,8 @@ export default function JobLossGraph({ job }: Props) {
 
           <div className="bg-gray-950 border border-gray-800 rounded-lg p-3">
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-xs text-gray-400">Plot stride</label>
-              <span className="text-xs text-gray-300">every {plotStride} pt</span>
+              <label className="block text-xs text-gray-400">绘图步幅 (Plot stride)</label>
+              <span className="text-xs text-gray-300">每 {plotStride} 点 (pt)</span>
             </div>
             <input
               type="range"
@@ -704,7 +704,7 @@ export default function JobLossGraph({ job }: Props) {
               onChange={e => setPlotStride(Number(e.target.value))}
               className="w-full accent-blue-500"
             />
-            <div className="mt-2 text-[11px] text-gray-500">UI downsample for huge runs.</div>
+            <div className="mt-2 text-[11px] text-gray-500">大型训练运行的 UI 降采样。(UI downsample for huge runs.)</div>
           </div>
         </div>
       </div>

@@ -28,10 +28,10 @@ export default function FilesWidget({ jobID, jobName }: { jobID: string; jobName
   const handleDeleteFile = (filePath: string) => {
     const fileName = getFilename(filePath);
     openConfirm({
-      title: 'Delete Checkpoint',
-      message: `Are you sure you want to delete "${fileName}"? This action cannot be undone.`,
+      title: '删除检查点 (Delete Checkpoint)',
+      message: `确定要删除 "${fileName}" 吗？此操作无法撤销。(Are you sure you want to delete "${fileName}"? This action cannot be undone.)`,
       type: 'warning',
-      confirmText: 'Delete',
+      confirmText: '删除 (Delete)',
       onConfirm: () => {
         apiClient
           .post('/api/files/delete', { filePath })
@@ -50,7 +50,7 @@ export default function FilesWidget({ jobID, jobName }: { jobID: string; jobName
       <div className="bg-gray-800 px-4 py-3 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <Brain className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-          <h2 className="font-semibold text-gray-100">Checkpoints</h2>
+          <h2 className="font-semibold text-gray-100">检查点 (Checkpoints)</h2>
           <span className="px-2 py-0.5 bg-gray-700 rounded-full text-xs text-gray-300">{checkpointFiles.length}</span>
         </div>
         {checkpointFiles.length > 0 && (
@@ -68,7 +68,7 @@ export default function FilesWidget({ jobID, jobName }: { jobID: string; jobName
               );
             }}
           >
-            merge
+            合并 (merge)
           </span>
         )}
       </div>
@@ -83,7 +83,7 @@ export default function FilesWidget({ jobID, jobName }: { jobID: string; jobName
         {status === 'error' && (
           <div className="flex items-center justify-center py-4 text-rose-400 space-x-2">
             <AlertCircle className="w-4 h-4" />
-            <span className="text-sm">Error loading checkpoints</span>
+            <span className="text-sm">检查点加载出错 (Error loading checkpoints)</span>
           </div>
         )}
 
@@ -125,7 +125,7 @@ export default function FilesWidget({ jobID, jobName }: { jobID: string; jobName
                       type="button"
                       onClick={() => handleDeleteFile(file.path)}
                       className="bg-red-500 bg-opacity-0 group-hover:bg-opacity-10 hover:!bg-opacity-30 rounded-full p-1 transition-all"
-                      title="Delete checkpoint"
+                      title="删除检查点 (Delete checkpoint)"
                     >
                       <Trash2 className="w-3 h-3 text-red-500" />
                     </button>
@@ -146,7 +146,7 @@ export default function FilesWidget({ jobID, jobName }: { jobID: string; jobName
                     <div className="flex text-sm text-amber-200">
                       <span className="overflow-hidden text-ellipsis direction-rtl whitespace-nowrap">optimizer</span>
                     </div>
-                    <span className="text-xs text-amber-600/70">.pt · optimizer state</span>
+                    <span className="text-xs text-amber-600/70">.pt · 优化器状态 (optimizer state)</span>
                   </div>
                 </a>
                 <div className="flex items-center space-x-3 flex-shrink-0">
@@ -162,7 +162,7 @@ export default function FilesWidget({ jobID, jobName }: { jobID: string; jobName
                     type="button"
                     onClick={() => handleDeleteFile(optimizerFile.path)}
                     className="bg-red-500 bg-opacity-0 group-hover:bg-opacity-10 hover:!bg-opacity-30 rounded-full p-1 transition-all"
-                    title="Delete optimizer state"
+                    title="删除优化器状态 (Delete optimizer state)"
                   >
                     <Trash2 className="w-3 h-3 text-red-500" />
                   </button>
@@ -173,7 +173,7 @@ export default function FilesWidget({ jobID, jobName }: { jobID: string; jobName
         )}
 
         {['success', 'refreshing'].includes(status) && files.length === 0 && (
-          <div className="text-center py-4 text-gray-400 text-sm">No checkpoints available</div>
+          <div className="text-center py-4 text-gray-400 text-sm">暂无检查点 (No checkpoints available)</div>
         )}
       </div>
     </div>

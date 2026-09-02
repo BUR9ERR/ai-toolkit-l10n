@@ -19,7 +19,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Ostris - AI Toolkit',
-  description: 'A toolkit for building AI things.',
+  description: '用于构建 AI 应用的工具包。(A toolkit for building AI things.)',
 };
 
 export const viewport = {

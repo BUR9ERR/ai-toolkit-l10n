@@ -21,7 +21,7 @@ interface Props {
 export default function SampleControlImage({
   src,
   className,
-  instruction = 'Add Control Image',
+  instruction = '添加控制图片 (Add Control Image)',
   onNewImageSelected,
 }: Props) {
   const [isUploading, setIsUploading] = useState(false);
@@ -151,7 +151,7 @@ export default function SampleControlImage({
         <div className="flex flex-col items-center justify-center text-gray-300 text-center">
           <FaImage className="opacity-80" />
           <div className="mt-1 text-[10px] font-semibold tracking-wide opacity-80">{instruction}</div>
-          <div className="mt-0.5 text-[9px] opacity-60">Click or drop</div>
+          <div className="mt-0.5 text-[9px] opacity-60">点击或拖放 (Click or drop)</div>
         </div>
       )}
 
@@ -175,7 +175,7 @@ export default function SampleControlImage({
               )}
             >
               <FaUpload className="text-[10px]" />
-              <span>Replace</span>
+              <span>替换 (Replace)</span>
             </div>
           </div>
 
@@ -183,8 +183,8 @@ export default function SampleControlImage({
           <button
             type="button"
             onClick={clearImage}
-            title="Clear image"
-            aria-label="Clear image"
+            title="清除图片 (Clear image)"
+            aria-label="清除图片 (Clear image)"
             className={classNames(
               'absolute right-1.5 top-1.5 z-10 inline-flex items-center justify-center',
               'h-5 w-5 rounded-md bg-black/55 text-white/90',
@@ -207,7 +207,7 @@ export default function SampleControlImage({
                 style={{ width: `${uploadProgress}%` }}
               />
             </div>
-            <div className="mt-1 text-[10px] font-medium text-white/90">Uploading… {uploadProgress}%</div>
+            <div className="mt-1 text-[10px] font-medium text-white/90">上传中… {uploadProgress}% (Uploading…)</div>
           </div>
         </div>
       )}

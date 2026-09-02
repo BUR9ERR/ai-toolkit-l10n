@@ -263,10 +263,10 @@ const DatasetImageCard: React.FC<DatasetImageCardProps> = ({
               className="bg-gray-800 rounded-full p-2"
               onClick={() => {
                 openConfirm({
-                  title: `Delete ${isItAVideo ? 'video' : 'image'}`,
-                  message: `Are you sure you want to delete this ${isItAVideo ? 'video' : 'image'}? This action cannot be undone.`,
+                  title: `删除${isItAVideo ? '视频' : '图片'} (Delete ${isItAVideo ? 'video' : 'image'})`,
+                  message: `确定要删除此${isItAVideo ? '视频' : '图片'}吗？此操作无法撤销。(Are you sure you want to delete this ${isItAVideo ? 'video' : 'image'}? This action cannot be undone.)`,
                   type: 'warning',
-                  confirmText: 'Delete',
+                  confirmText: '删除 (Delete)',
                   onConfirm: () => {
                     apiClient
                       .post('/api/img/delete', { imgPath: imageUrl })
@@ -312,7 +312,7 @@ const DatasetImageCard: React.FC<DatasetImageCardProps> = ({
             />
           </form>
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-gray-400">Loading caption...</div>
+          <div className="w-full h-full flex items-center justify-center text-gray-400">正在加载标注… (Loading caption...)</div>
         )}
       </div>
     </div>

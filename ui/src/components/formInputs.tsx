@@ -342,7 +342,7 @@ export const CreatableSelectInput = (props: CreatableSelectInputProps) => {
   const customInputRef = React.useRef<HTMLInputElement>(null);
 
   // Build select options with "Custom" at the top
-  const customOption: SelectOption = { value: CUSTOM_SELECT_VALUE, label: 'Custom' };
+  const customOption: SelectOption = { value: CUSTOM_SELECT_VALUE, label: '自定义 (Custom)' };
   const selectOptions = React.useMemo(() => {
     if (options && options.length > 0 && 'options' in options[0]) {
       return [{ label: '', options: [customOption] }, ...(options as GroupedSelectOption[])];
@@ -389,7 +389,7 @@ export const CreatableSelectInput = (props: CreatableSelectInputProps) => {
             formatOptionLabel={(option: unknown) => {
               const opt = option as SelectOption;
               return opt.value === CUSTOM_SELECT_VALUE ? (
-                <span className="opacity-50 italic">~ Custom ~</span>
+                <span className="opacity-50 italic">~ 自定义 (Custom) ~</span>
               ) : (
                 opt.label
               );
@@ -417,7 +417,7 @@ export const CreatableSelectInput = (props: CreatableSelectInputProps) => {
             value={value}
             onChange={e => onChange(e.target.value)}
             className={`${inputClasses} flex-1 min-w-0`}
-            placeholder={props.placeholder ?? 'Enter custom value'}
+            placeholder={props.placeholder ?? '输入自定义值 (Enter custom value)'}
             disabled={props.disabled}
           />
         )}
@@ -462,7 +462,7 @@ export const Checkbox = (props: CheckboxProps) => {
           disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-opacity-80',
         )}
       >
-        <span className="sr-only">Toggle {label}</span>
+        <span className="sr-only">切换 {label} (Toggle {label})</span>
         <span
           className={classNames(
             'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',

@@ -77,8 +77,8 @@ export default function DatasetPage({ params }: { params: { datasetName: string 
 
     if (status == 'loading') {
       icon = <LuLoader className="animate-spin w-8 h-8" />;
-      text = 'Loading Images';
-      subtitle = 'Please wait while we fetch your dataset images...';
+      text = '正在加载图片 (Loading Images)';
+      subtitle = '正在获取数据集图片，请稍候... (Please wait while we fetch your dataset images...)'
       showIt = true;
       bgColor = 'bg-gray-800/50';
       textColor = 'text-gray-100';
@@ -86,8 +86,8 @@ export default function DatasetPage({ params }: { params: { datasetName: string 
     }
     if (status == 'error') {
       icon = <LuBan className="w-8 h-8" />;
-      text = 'Error Loading Images';
-      subtitle = 'There was a problem fetching the images. Please try refreshing the page.';
+      text = '图片加载出错 (Error Loading Images)';
+      subtitle = '获取图片时出现问题，请尝试刷新页面。(There was a problem fetching the images. Please try refreshing the page.)'
       showIt = true;
       bgColor = 'bg-red-600/20';
       textColor = 'text-red-100';
@@ -95,8 +95,8 @@ export default function DatasetPage({ params }: { params: { datasetName: string 
     }
     if (status == 'success' && imgList.length === 0) {
       icon = <LuImageOff className="w-8 h-8" />;
-      text = 'No Images Found';
-      subtitle = 'This dataset is empty. Click "Add Images" to get started.';
+      text = '未找到图片 (No Images Found)';
+      subtitle = '该数据集为空，点击“添加图片 (Add Images)”开始。(This dataset is empty. Click "Add Images" to get started.)'
       showIt = true;
       bgColor = 'bg-gray-800/50';
       textColor = 'text-gray-100';
@@ -127,14 +127,14 @@ export default function DatasetPage({ params }: { params: { datasetName: string 
         </div>
         <div className="min-w-0 flex-shrink">
           <h1 className="text-base sm:text-lg truncate">
-            <span className="hidden sm:inline">Dataset: </span>
+            <span className="hidden sm:inline">数据集 (Dataset): </span>
             {datasetName}
           </h1>
         </div>
         <div className="flex-1"></div>
         <div className="flex-shrink-0 flex items-center gap-1 sm:gap-2">
           <div className="flex items-center gap-1">
-            <label className="text-xs text-gray-400 hidden sm:inline whitespace-nowrap">Caption ext</label>
+            <label className="text-xs text-gray-400 hidden sm:inline whitespace-nowrap">标注扩展名 (Caption ext)</label>
             <CreatableSelectInput
               className="w-44"
               value={captionExt}
@@ -155,8 +155,8 @@ export default function DatasetPage({ params }: { params: { datasetName: string 
             className="text-white bg-slate-600 px-2 sm:px-3 py-1 rounded-md text-sm sm:text-base whitespace-nowrap"
             onClick={() => openImagesModal(datasetName, () => refreshImageList(datasetName))}
           >
-            <span className="sm:hidden">+ Add</span>
-            <span className="hidden sm:inline">Add Images</span>
+            <span className="sm:hidden">+ 添加 (Add)</span>
+            <span className="hidden sm:inline">添加图片 (Add Images)</span>
           </Button>
           <DatasetActionBar datasetName={datasetName} />
         </div>

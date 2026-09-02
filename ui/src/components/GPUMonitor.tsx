@@ -48,7 +48,7 @@ const GpuMonitor: React.FC = () => {
     if (error) {
       return (
         <div className="bg-red-900 border border-red-600 text-red-200 px-4 py-3 rounded relative" role="alert">
-          <strong className="font-bold">Error!</strong>
+          <strong className="font-bold">错误！(Error!)</strong>
           <span className="block sm:inline"> {error}</span>
         </div>
       );
@@ -57,7 +57,7 @@ const GpuMonitor: React.FC = () => {
     if (!gpuData) {
       return (
         <div className="bg-yellow-900 border border-yellow-700 text-yellow-300 px-4 py-3 rounded relative" role="alert">
-          <span className="block sm:inline">No GPU data available.</span>
+          <span className="block sm:inline">暂无 GPU 数据。(No GPU data available.)</span>
         </div>
       );
     }
@@ -65,8 +65,8 @@ const GpuMonitor: React.FC = () => {
     if (!gpuData.hasNvidiaSmi && !gpuData.isMac) {
       return (
         <div className="bg-yellow-900 border border-yellow-700 text-yellow-300 px-4 py-3 rounded relative" role="alert">
-          <strong className="font-bold">No NVIDIA GPUs detected!</strong>
-          <span className="block sm:inline"> nvidia-smi is not available on this system.</span>
+          <strong className="font-bold">未检测到 NVIDIA GPU！(No NVIDIA GPUs detected!)</strong>
+          <span className="block sm:inline"> 此系统上不可用 nvidia-smi。(nvidia-smi is not available on this system.)</span>
           {gpuData.error && <p className="mt-2 text-sm">{gpuData.error}</p>}
         </div>
       );
@@ -75,7 +75,7 @@ const GpuMonitor: React.FC = () => {
     if (gpuData.gpus.length === 0) {
       return (
         <div className="bg-yellow-900 border border-yellow-700 text-yellow-300 px-4 py-3 rounded relative" role="alert">
-          <span className="block sm:inline">No GPUs found, but nvidia-smi is available.</span>
+          <span className="block sm:inline">未找到 GPU，但 nvidia-smi 可用。(No GPUs found, but nvidia-smi is available.)</span>
         </div>
       );
     }
@@ -94,8 +94,8 @@ const GpuMonitor: React.FC = () => {
   return (
     <div className="w-full">
       <div className="flex justify-between items-center mb-2">
-        <h1 className="text-md">GPU Monitor</h1>
-        <div className="text-xs text-gray-500">Last updated: {lastUpdated?.toLocaleTimeString()}</div>
+        <h1 className="text-md">GPU 监控 (GPU Monitor)</h1>
+        <div className="text-xs text-gray-500">最后更新 (Last updated): {lastUpdated?.toLocaleTimeString()}</div>
       </div>
       {content}
     </div>
