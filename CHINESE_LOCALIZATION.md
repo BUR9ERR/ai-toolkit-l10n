@@ -43,7 +43,7 @@ python -m manager launch      # 启动 Web UI，浏览器打开 http://localhost
 
 适合已经 clone 过官方 ai-toolkit、**版本是 v0.13.4** 的人。
 
-**第 1 步**：从本仓库导出一份补丁（只需导出一次）：
+**第 1 步**：下载补丁文件 **[ai-toolkit-l10n-v0.13.4.patch](docs/ai-toolkit-l10n-v0.13.4.patch)**（已随本仓库提供，无需自己导出）：
 
 ```bash
 git format-patch -1 a634a8e --stdout > ai-toolkit-l10n.patch
