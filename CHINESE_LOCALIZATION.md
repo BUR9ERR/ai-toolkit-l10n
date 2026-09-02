@@ -5,6 +5,7 @@
 - 官方原版：https://github.com/ostris/ai-toolkit
 - 基于版本：**v0.13.4**（commit `9d6a9a0`）
 - 汉化提交：`a634a8e`（51 个文件，全部位于 `ui/src/`）
+- GitHub Release：**[v0.13.4-l10n](https://github.com/haoranwnag/ai-toolkit-l10n/releases/tag/v0.13.4-l10n)**（含汉化补丁附件下载）
 
 ## 界面预览（汉化效果）
 
@@ -43,7 +44,7 @@ python -m manager launch      # 启动 Web UI，浏览器打开 http://localhost
 
 适合已经 clone 过官方 ai-toolkit、**版本是 v0.13.4** 的人。
 
-**第 1 步**：下载补丁文件 **[ai-toolkit-l10n-v0.13.4.patch](docs/ai-toolkit-l10n-v0.13.4.patch)**（已随本仓库提供，无需自己导出）：
+**第 1 步**：下载补丁文件 **[ai-toolkit-l10n-v0.13.4.patch](docs/ai-toolkit-l10n-v0.13.4.patch)**（已随本仓库提供；也可从 [Release v0.13.4-l10n](https://github.com/haoranwnag/ai-toolkit-l10n/releases/tag/v0.13.4-l10n) 的附件下载）：
 
 ```bash
 git format-patch -1 a634a8e --stdout > ai-toolkit-l10n.patch
