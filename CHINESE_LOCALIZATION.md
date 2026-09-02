@@ -1,10 +1,84 @@
 # AI Toolkit 中文汉化版
 
-本仓库是 [ostris/ai-toolkit](https://github.com/ostris/ai-toolkit) 的中文汉化 fork，对 Web UI 进行了全量**双语汉化**，其余功能与原版完全一致。
+本仓库是 [ostris/ai-toolkit](https://github.com/ostris/ai-toolkit) 的中文汉化 fork：对 Web UI 做了全量**双语汉化**（`中文 (English)`），训练、推理等所有功能与原版完全一致。
 
 - 官方原版：https://github.com/ostris/ai-toolkit
 - 基于版本：**v0.13.4**（commit `9d6a9a0`）
 - 汉化提交：`a634a8e`（51 个文件，全部位于 `ui/src/`）
+
+## 怎么用？先花 10 秒选一条路
+
+| 你的情况 | 用哪种方式 |
+| --- | --- |
+| 还没装过，想直接用汉化版 | **方式一：直接 clone 本仓库**（最简单，推荐） |
+| 已经装了官方 ai-toolkit，不想重新下载 | 方式二：打补丁 |
+| 不太会用 git，想要现成文件 | 方式三：覆盖文件 |
+
+> **补丁是什么？** 就是一个记录"哪些文件的哪一行改成了什么"的小文件，用 git 自动帮你改，不用手动复制。它只适合"已有官方版、且版本相同"的人；**其他人直接用方式一即可，完全不需要补丁。**
+
+---
+
+### 方式一：直接使用本仓库（推荐，最简单）
+
+clone 下来的就是「官方完整代码 + 汉化」，装好环境直接能用。
+
+```bash
+git clone https://github.com/haoranwnag/ai-toolkit-l10n.git
+cd ai-toolkit-l10n
+python -m manager install     # 首次安装环境（之前装过可跳过）
+python -m manager launch      # 启动 Web UI，浏览器打开 http://localhost:8675
+```
+
+---
+
+### 方式二：已有官方版 → 打补丁
+
+适合已经 clone 过官方 ai-toolkit、**版本是 v0.13.4** 的人。
+
+**第 1 步**：从本仓库导出一份补丁（只需导出一次）：
+
+```bash
+git format-patch -1 a634a8e --stdout > ai-toolkit-l10n.patch
+```
+
+**第 2 步**：到官方仓库里应用：
+
+```bash
+cd 你的官方ai-toolkit目录
+git apply 路径/ai-toolkit-l10n.patch
+```
+
+**第 3 步**：重新构建并启动（见下方「重新构建」）。
+
+> 如果版本不是 v0.13.4，补丁可能对不上而报错，此时改用方式一或方式三。
+
+---
+
+### 方式三：覆盖文件（给不会 git 的人）
+
+用分享包里的 `ai-toolkit-l10n-overlay-v0.13.4.zip`：
+
+1. 解压 zip
+2. 把里面的 `ui/` 文件夹**整体**复制
+3. 粘贴到你的 ai-toolkit 项目根目录，**同名文件直接替换**
+
+不需要打任何命令，之后进入「重新构建」。
+
+---
+
+## 重新构建（汉化生效的前提）
+
+汉化改的是**前端源码**，必须重新"编译"一次界面才会生效：
+
+```bash
+cd ui
+npm install      # 首次需要安装依赖
+npm run build    # 重新构建前端
+cd ..
+python -m manager launch    # 启动，浏览器打开 http://localhost:8675
+```
+
+---
 
 ## 汉化说明
 
@@ -17,48 +91,7 @@
   - aria-label、placeholder、弹窗消息等无障碍与交互文案
 - **不影响**：训练、推理、CLI、后端等任何功能代码，仅改动前端显示文案。
 
-## 如何获得汉化
-
-### 方式一：直接使用本仓库（推荐）
-
-```bash
-git clone https://github.com/haoranwnag/ai-toolkit-l10n.git
-cd ai-toolkit
-python -m manager install      # 首次环境安装
-python -m manager launch       # 启动 Web UI，浏览器访问 http://localhost:8675
-```
-
-### 方式二：给已有官方仓库打补丁
-
-如果你已克隆官方仓库（版本需为 v0.13.4）：
-
-1. 从本仓库导出汉化补丁：
-
-   ```bash
-   git format-patch -1 a634a8e --stdout > ai-toolkit-l10n.patch
-   ```
-
-2. 在官方仓库应用：
-
-   ```bash
-   cd ai-toolkit
-   git apply ai-toolkit-l10n.patch
-   cd ui && npm install && npm run build
-   ```
-
-> 也可直接使用分享包中的 `ai-toolkit-l10n-v0.13.4.patch` 或覆盖版 zip。
-
-## 重新构建（汉化生效前提）
-
-汉化修改的是前端源码，需重新构建后才能看到效果：
-
-```bash
-cd ui
-npm install
-npm run build
-cd ..
-python -m manager launch
-```
+---
 
 ## 与上游保持同步
 
