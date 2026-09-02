@@ -44,22 +44,17 @@ python -m manager launch      # 启动 Web UI，浏览器打开 http://localhost
 
 适合已经 clone 过官方 ai-toolkit、**版本是 v0.13.4** 的人。
 
-**第 1 步**：下载补丁文件 **[ai-toolkit-l10n-v0.13.4.patch](docs/ai-toolkit-l10n-v0.13.4.patch)**（已随本仓库提供；也可从 [Release v0.13.4-l10n](https://github.com/haoranwnag/ai-toolkit-l10n/releases/tag/v0.13.4-l10n) 的附件下载）：
+**第 1 步**：下载补丁文件 **[ai-toolkit-l10n-v0.13.4.patch](docs/ai-toolkit-l10n-v0.13.4.patch)**（已随本仓库提供；也可从 [Release v0.13.4-l10n](https://github.com/haoranwnag/ai-toolkit-l10n/releases/tag/v0.13.4-l10n) 的附件下载），放到官方项目根目录。
+
+**第 2 步**：在官方项目根目录应用：
 
 ```bash
-git format-patch -1 a634a8e --stdout > ai-toolkit-l10n.patch
-```
-
-**第 2 步**：到官方仓库里应用：
-
-```bash
-cd 你的官方ai-toolkit目录
-git apply 路径/ai-toolkit-l10n.patch
+git apply ai-toolkit-l10n-v0.13.4.patch
 ```
 
 **第 3 步**：重新构建并启动（见下方「重新构建」）。
 
-> 如果版本不是 v0.13.4，补丁可能对不上而报错，此时改用方式一或方式三。
+> 补丁只对官方 v0.13.4 有效；若版本不符会报错，此时改用方式一或方式三。
 
 ---
 
@@ -106,9 +101,10 @@ python -m manager launch    # 启动，浏览器打开 http://localhost:8675
 
 ## 与上游保持同步
 
-本仓库 fork 自官方，可随时通过 GitHub 的 **Sync fork** 按钮，或以下命令同步上游更新：
+本仓库 fork 自官方，可随时通过 GitHub 的 **Sync fork** 按钮同步上游更新；也可命令行操作（首次需先添加 upstream）：
 
 ```bash
+git remote add upstream https://github.com/ostris/ai-toolkit.git   # 仅首次
 git fetch upstream
 git merge upstream/main        # 如与汉化文件冲突需手动解决
 ```

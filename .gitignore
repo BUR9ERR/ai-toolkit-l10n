@@ -193,3 +193,9 @@ aitk_db.db-shm
 original_repo
 .next
 testing/.model_test_outputs
+
+
+# Local tooling / secrets (never commit)
+.local-deps/
+sync_log*.txt
+launch_log*.txt
